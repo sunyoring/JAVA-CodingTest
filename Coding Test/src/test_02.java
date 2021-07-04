@@ -1,6 +1,62 @@
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class test_02 {
+
+	/*
+	 * 문제 1
+	 * 
+	 * https://programmers.co.kr/learn/courses/30/lessons/77484
+	 */
+	public int[] solution(int[] lottos, int[] win_nums) {
+
+		int[] answer = new int[2];
+		int count = 0; // 실 비교 결과 정답임을 카운팅
+		int zeroCount = 0; // 0자리가 정답임을 가정하고 카운팅
+	for(int i = 0; i < 6; i ++) {
+		 if (lottos[i] == 0) { // 0인 자리가 정답임을 가정하에 카운팅
+			 zeroCount+=1;
+		}
+		for( int j = 0 ; j < 6; j++) {
+			if( lottos[i] == win_nums[j] ) {  //실 비교값 정답을 카운팅 합니다.
+				count ++;
+			}
+
+		}
+	}
+	answer[0] = zeroCount+count; // 실비교 + 0자리 정답 ( 최대 갯수 ) 
+	answer[1] = count; // 0자리가 다 맞지 않을 경우 실 비교 값만 정답이므로 최소 정답 갯수
+	
+	for(int i = 0; i < 2; i++) {
+		switch (answer[i]) {
+		
+ 		case 0 : 
+ 			answer [i] = 6;
+			break;
+ 		case 1 :
+ 			answer[i] = 6;
+ 		case 2 : 
+			answer[i] = 5;
+			break;
+ 		case 3 : 
+			answer[i] = 4;
+			break;
+ 		case 4 : 
+			answer[i] = 3;
+			break;
+ 		case 5: 
+			answer[i] = 2;
+			break;
+ 		case 6 : 
+ 			answer[i] =1;
+			break;
+		default :answer[i] = 6; break;
+		}
+	}
+		
+
+		return answer;
+	}
 
 	/*
 	 * 문제 2
@@ -60,7 +116,13 @@ public class test_02 {
 
 		test_02 t = new test_02();
 
-		System.out.println(t.solution2(13, 17));
+//		System.out.println(t.solution2(13, 17));
 
+		int[] a = { 44, 1, 0, 0, 31, 25 };
+		int[] b = { 31, 10, 45, 1, 6, 19 };
+		int[] c = t.solution(a, b);
+		System.out.println(c[0]);
+		System.out.println(c[1]);
 	}
+
 }
