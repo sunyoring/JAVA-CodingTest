@@ -35,6 +35,7 @@ public class test_02 {
 			break;
  		case 1 :
  			answer[i] = 6;
+ 			break;
  		case 2 : 
 			answer[i] = 5;
 			break;
